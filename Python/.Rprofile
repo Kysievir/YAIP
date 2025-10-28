@@ -1,6 +1,7 @@
-#source("renv/activate.R")
+source("renv/activate.R")
 
-Sys.setenv(RICU_DATA_PATH = "/Users/patrick/datasets/ricu")
+Sys.setenv(RICU_DATA_PATH = "/home/boat/R_projects/importing_mimic_with_ricu/data/")
+Sys.setenv(RICU_CONFIG_PATH = "/home/boat/R_projects/importing_mimic_with_ricu/custom_config/")
 if(require("ricu", quietly = TRUE)) {
   source("../ricu-extensions/callbacks/callback-icu-mortality.R")
   source("../ricu-extensions/callbacks/callback-kdigo.R")

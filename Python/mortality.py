@@ -96,8 +96,10 @@ def create_mortality_task(args):
     cohort = Cohort(patients)
     cohort.add_criterion([excl1, excl2, excl3, excl4, excl5, excl6, excl7])
     print(cohort.criteria)
+    print("DEBUG: About to cohort.select()")
     patients, attrition = cohort.select()
     print('\n')
+    print("DEBUG: cohort.select() done")
 
     print('   Load and format input data')
     outc_formatting = Pipeline("Prepare mortality")
