@@ -5,7 +5,18 @@ import pandas as pd
 
 from .ricu import *
 from .Rutils import as_null, r_to_pandas
+from rpy2.robjects import r
 
+import logging
+import sys
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
+file_handler= logging.FileHandler("log.txt")
+logger.addHandler(file_handler)
+stream_handler = logging.StreamHandler(sys.stdout)
+logger.addHandler(stream_handler)
 
 class Step():
     """Base class for a transformation step
@@ -83,7 +94,9 @@ class LoadStep(Step):
         if input is not None:
             raise ValueError(f'Load step does not accept input, got {input}')
 
+        logger.debug("DEBUG: Loading concepts " + " ".join(list(r.names(self.concept))))
         res = ricu.load_concepts(self.concept, self.src, **self.kwargs)
+        logger.debug("DEBUG: Loading finished")
         
         # Rename columns uniformly across datasets
         old = ricu.id_var(res)
