@@ -1,12 +1,2 @@
-source("renv/activate.R")
-
-Sys.setenv(RICU_DATA_PATH = "/home/boat/R_projects/importing_mimic_with_ricu/data/")
-Sys.setenv(RICU_CONFIG_PATH = "/home/boat/R_projects/importing_mimic_with_ricu/custom_config/")
-if(require("ricu", quietly = TRUE)) {
-  source("../ricu-extensions/callbacks/callback-icu-mortality.R")
-  source("../ricu-extensions/callbacks/callback-kdigo.R")
-  source("../ricu-extensions/callbacks/callback-sepsis.R")
-  
-  concept_path <- file.path("..", "ricu-extensions", "configs", c("chemistry", "circulatory", "demographics", "hematology", "medications", "misc", "outcomes", "output", "vitals"))
-  dict <- load_dictionary(cfg_dirs = concept_path)
-}
+print("Running .Rprofile\n")
+#.libPaths(c("/home/boat/R/x86_64-pc-linux-gnu-library/4.5", .libPaths()))

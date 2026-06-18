@@ -1,3 +1,4 @@
+print("Running ricu.py\n")
 import os
 from typing import List
 
@@ -7,9 +8,17 @@ from rpy2.robjects.packages import importr
 
 from .Rutils import as_data_frame, r_to_pandas
 
+ro.r(".libPaths()")
+ro.r(".libPaths(c(\"/home/boat/R/x86_64-pc-linux-gnu-library/4.5\", .libPaths()))")
+ro.r.source("alt_setup.R")
+
+
+
 # Load ricu
 ricu = importr('ricu')
 
+ricu.attach_src("miiv")
+print("miiv attached")
 # ------------------------------------------------------------------------------
 # Port existing and often used ricu functions 
 
@@ -37,7 +46,7 @@ def dictionary(dir: str = '../ricu-extensions/configs', **kwargs) -> ro.ListVect
     folders = [os.path.join(dir, subdir) for subdir in os.listdir(dir)]
     return ricu.load_dictionary(cfg_dirs=folders, **kwargs)
 
-def concepts(x: str | List[str], dict: ro.ListVector = dictionary()) -> ro.RObject:
+def concepts(x: str | List[str], dict: ro.ListVector = dictionary()) -> ro.RsObject:
     """Get one or more ricu concepts by name
 
     Args:
