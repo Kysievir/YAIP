@@ -6,3 +6,7 @@
 R/renv/*
 Python/renv/*
 *.pyc
+
+.venv
+.ruff_cache
+.lock

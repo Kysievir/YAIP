@@ -88,8 +88,10 @@ for segment in segments:
     logger.info("Merged %s head:\n%s", segment, data[segment].head())
 
 for segment, basename in zip(segments, basenames):
-    file_path = Path("/home/boat/Desktop/ICU/YAIB_cohort/YAIB-cohorts/Python/export") / \
-                    "mortality24" /"eicu_demo" / basename
+    # file_path = Path("/home/boat/Desktop/ICU/YAIB_cohort/YAIB-cohorts/Python/export") / \
+    #                 "mortality24" /"eicu_demo" / basename
+    file_path = Path("/home/boat/Desktop/ICU/YAIB_cohort/YAIB-cohorts/export_dummy") / \
+                    "mortality" /"eicu_demo" / basename
     file_path.parent.mkdir(parents=True, exist_ok=True)
     data[segment].to_parquet(file_path)
 

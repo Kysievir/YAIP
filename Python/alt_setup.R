@@ -3,7 +3,8 @@ print(.libPaths())
 # devtools::install_local("/home/boat/R_projects/ricu/", force = TRUE)
 
 # Probably this will be chosen again in importr("ricu")
-devtools::load_all("/home/boat/R_projects/ricu/")
+# devtools::load_all("/home/boat/R_projects/ricu/")
+# devtools::install("/home/boat/R_projects/ricu/", upgrade = FALSE)
 
 Sys.setenv(RICU_DATA_PATH = "/home/boat/R_projects/importing_mimic_with_ricu/data/")
 Sys.setenv(RICU_CONFIG_PATH = "/home/boat/R_projects/importing_mimic_with_ricu/custom_config/")
