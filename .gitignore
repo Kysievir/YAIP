@@ -12,5 +12,6 @@ Python/renv/*
 .lock
 
 data/*
+!data/.gitkeep
 export/
 export_dummy/
