@@ -10,3 +10,7 @@ Python/renv/*
 .venv
 .ruff_cache
 .lock
+
+data/
+export/
+export_dummy/
