@@ -7,6 +7,7 @@ requires-python = ">=3.12"
 dependencies = [
     "duckdb>=1.4.1",
     "pandas>=2.3.3",
+    "polars>=2.0.0",
     "pyarrow>=22.0.0",
     "rpy2>=3.6.4",
 ]

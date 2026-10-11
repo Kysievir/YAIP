@@ -15,7 +15,7 @@
 -- the general cohort criteria.
 -- ------------------------------------------------------------
 
-CREATE OR REPLACE TABLE excluded_mortality_task AS
+CREATE OR REPLACE TABLE excluded_mortality AS
 
 SELECT DISTINCT
     stay_id
@@ -40,9 +40,29 @@ FROM population_general AS p
 
 WHERE NOT EXISTS (
     SELECT 1
-    FROM excluded_mortality_task AS e
+    FROM excluded_mortality AS e
     WHERE e.stay_id = p.stay_id
 )
+;
+
+
+-- ============================================================
+-- PATIENTS
+-- ============================================================
+--
+-- Stay_id and patient_id mapping for sample stratification
+-- ============================================================
+
+CREATE OR REPLACE TABLE mortality_patients AS
+
+SELECT
+    pop.stay_id,
+    pa.patient_id
+
+FROM population_mortality AS pop
+
+LEFT JOIN patients AS pa
+    ON pa.stay_id = pop.stay_id
 ;
 
 

@@ -85,7 +85,6 @@ if __name__ == "__main__":
     parser.add_argument(
         "--target",
         type=Path,
-        required=True,
         default=Path("../export/mimic") ,
         help=(
             "Directory for Parquet exports into outc, dyn, sta, and patients under ",
@@ -97,4 +96,12 @@ if __name__ == "__main__":
         "--rebuild-general",
         action="store_true",
         help="Rebuild the general cohort even if it already exists."
+    )
+
+    args = parser.parse_args()
+
+    main(
+        task=args.task,
+        target_dir=args.target,
+        rebuild_general=args.rebuild_general
     )

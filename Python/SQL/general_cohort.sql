@@ -39,7 +39,7 @@ SELECT DISTINCT
     stay_id,
     'end_before_zero' AS reason
 FROM stays
-WHERE end < 0
+WHERE "end" < 0
 
 
 UNION ALL

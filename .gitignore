@@ -11,6 +11,8 @@ Python/renv/*
 .ruff_cache
 .lock
 
+notes/
+
 data/*
 !data/.gitkeep
 export/

@@ -18,6 +18,7 @@ import rpy2.robjects as ro
 # print(f"{py_value!r}")
 
 import duckdb
+import polars as pl
 from pathlib import Path
 
 db_path = Path("../export_dummy/mortality/miiv/ricu.db")
@@ -36,15 +37,19 @@ with duckdb.connect(db_path) as con:
     #     ORDER BY database_name, schema_name, table_name
     # """).df()
 
-    df = con.execute("""
-        SELECT
-            table_name,
-            list(column_name ORDER BY column_index) AS columns,
-            list(data_type ORDER BY column_index) AS column_types
-        FROM duckdb_columns()
-        WHERE NOT internal
-        GROUP BY table_name
-        ORDER BY table_name
-    """).df()
+    # df = con.execute("""
+    #     SELECT
+    #         table_name,
+    #         list(column_name ORDER BY column_index) AS columns,
+    #         list(data_type ORDER BY column_index) AS column_types
+    #     FROM duckdb_columns()
+    #     WHERE NOT internal
+    #     GROUP BY table_name
+    #     ORDER BY table_name
+    # """).df()
 
-    print(df)
+    df_ = con.execute(Path("SQL/scratches.sql").read_text()).df()
+    df = pl.from_pandas(df_)
+
+    with pl.Config(tbl_rows=50):
+        print(df)
